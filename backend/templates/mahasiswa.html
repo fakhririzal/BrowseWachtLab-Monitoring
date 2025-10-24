@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Mahasiswa</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/mahasiswa.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="logo">
+        <img
+          src="{{ url_for('static', filename='image/logo Ti.png') }}"
+          alt="Logo Ti"
+        />
+      </div>
+      <nav class="menu">
+        <a href="/home">HOME</a>
+        <a href="/mahasiswa_dashboard" class="active">DASHBOARD</a>
+        <a href="/mahasiswa_course">COURSES</a>
+      </nav>
+      <div class="profile">
+        <img
+          id="userAvatar"
+          src="{{ url_for('static', filename='image/profil.jpg') }}"
+          alt="User Avatar"
+        />
+      </div>
+    </header>
+
+    <main id="dashboardContent" class="status-1">
+      <div id="noCourse" class="status">
+        <h1>NO COURSE ADDED</h1>
+        <button id="addCourseBtn" class="add-btn">+ ADD COURSE</button>
+      </div>
+
+      <div id="courseList" class="status hidden">
+        <div class="courses-grid" id="coursesContainer"></div>
+        <button id="addCourseFloating" class="floating-btn">
+          + ADD COURSE
+        </button>
+      </div>
+
+      <div id="addCourseModal" class="modal hidden">
+        <div class="modal-content">
+          <h2>ADD COURSE</h2>
+          <input type="text" id="courseCode" placeholder="Input Course Code" />
+          <button id="submitCourse" class="submit-btn">SUBMIT</button>
+        </div>
+      </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/mahasiswa.js') }}"></script>
+  </body>
+</html>

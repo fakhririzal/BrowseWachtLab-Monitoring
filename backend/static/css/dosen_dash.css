@@ -1,0 +1,389 @@
+/* Font dan Warna Utama */
+:root {
+  --blue-light: #90adc9;
+  --blue-mid: #91adc8;
+  --green-light: #9dcd5a;
+  --white: #ffffff;
+  --accent-blue: #6d94c5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url("image/gedung2.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 30, 60, 0.24);
+  z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+}
+
+.logo img {
+  width: 50px;
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.menu a.active {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.menu a:hover {
+  background-color: var(--blue-light);
+}
+
+/* Profil default */
+.profile img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+/* Dashboard Area */
+#dashboardContent {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 70px;
+  position: relative;
+}
+
+/* STATUS 1 */
+#noCourse h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Tombol "ADD COURSE" utama */
+.add-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  color: var(--accent-blue);
+  border: none;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-size: 0.9rem; /* lebih kecil */
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  position: fixed;
+  bottom: 20px; /* letak paling bawah */
+  margin: 10px auto;
+  z-index: 999;
+}
+
+.add-btn:hover {
+  background-color: var(--accent-blue);
+  color: white;
+  transform: translate(-50%) scale(1.02);
+}
+
+/* STATUS 3 - Course Grid */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin: 40px auto 0;
+}
+
+.course-card {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 25px;
+  padding: 30px 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  color: rgb(3, 13, 15);
+  min-height: 140px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.course-card:hover {
+  transform: translateY(-5px) scale(1.01);
+}
+
+.course-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.course-card p {
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: rgb(3, 13, 15);
+}
+
+/* Floating Add Button (status 3) */
+.floating-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: white;
+  color: var(--accent-blue);
+  border: 1px solid var(--accent-blue);
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.floating-btn:hover {
+  background-color: var(--accent-blue);
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Modal (Status 2) */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 25px;
+  padding: 40px 60px;
+  width: 450px;
+  text-align: center;
+  color: #333;
+  box-shadow: 0 4px 70px rgba(0, 0, 0, 0.25);
+  animation: fadeInUp 0.3s ease;
+}
+
+.modal-content h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  background-color: #91adc8;
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.modal-content input::placeholder {
+  color: #e6e6e6;
+}
+
+.submit-btn {
+  background-color: var(--green-light);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #8bc84f;
+  transform: scale(1.05);
+}
+
+/* Animasi lembut */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Hidden Utility */
+.hidden {
+  display: none;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .menu {
+    gap: 15px;
+  }
+
+  #noCourse h1 {
+    font-size: 1.8rem;
+  }
+
+  .course-card {
+    padding: 15px;
+  }
+
+  .add-btn,
+  .floating-btn {
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+}
+
+/* === Versi Dosen === */
+.copy-top-right {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.2s ease;
+}
+
+.copy-top-right:hover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.copy-top-right svg {
+  fill: #cccccc;
+  width: 20px;
+  height: 20px;
+}
+
+.copy-top-right:hover svg {
+  fill: #918a8a;
+}
+
+/* === Notifikasi pojok kanan bawah === */
+.copy-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.247);
+  color: white;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-weight: 100;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+
+.copy-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Penyesuaian modal agar posisi relatif */
+.modal-content {
+  position: relative;
+}
+
+/* === Jaga agar warna input TETAP biru saat diketik atau autofill === */
+.modal-content input {
+  background-color: #91adc8 !important; /* biru permanen */
+  color: #fff !important; /* teks putih */
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  padding: 12px 20px;
+  text-align: center;
+  transition: none;
+}
+
+/* Saat fokus (klik/ketik), tetap biru */
+.modal-content input:focus {
+  background-color: #91adc8 !important;
+  color: #fff !important;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Untuk mengatasi efek autofill Chrome */
+.modal-content input:-webkit-autofill,
+.modal-content input:-webkit-autofill:focus,
+.modal-content input:-webkit-autofill:hover,
+.modal-content input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #91adc8 inset !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Placeholder tetap abu lembut */
+.modal-content input::placeholder {
+  color: #e6e6e6;
+  opacity: 0.9;
+}

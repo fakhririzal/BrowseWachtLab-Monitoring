@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Dosen</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/dosen_dash.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="overlay"></div>
+    <div class="content"></div>
+    <header class="navbar">
+      <div class="logo">
+        <img
+          src="{{ url_for('static', filename='image/logo Ti.png') }}"
+          alt="Logo Ti"
+        />
+      </div>
+      <nav class="menu">
+        <a href="/dosen_home">HOME</a>
+        <a href="/dosen_dashboard" class="active">DASHBOARD</a>
+        <a href="/dosen_course">COURSES</a>
+      </nav>
+      <div class="profile">
+        <img
+          id="userAvatar"
+          src="{{ url_for('static', filename='image/profil.jpg') }}"
+          alt="User Avatar"
+        />
+      </div>
+    </header>
+
+    <main id="dashboardContent" class="status-1">
+      <div id="noCourse" class="status">
+        <h1>NO COURSE CREATED</h1>
+        <button id="addCourseBtn" class="add-btn">+ ADD COURSE</button>
+      </div>
+
+      <div id="courseList" class="status hidden">
+        <div class="courses-grid" id="coursesContainer"></div>
+        <button id="addCourseFloating" class="floating-btn">
+          + ADD COURSE
+        </button>
+      </div>
+
+      <!-- Modal Tambah Course -->
+      <div id="addCourseModal" class="modal hidden">
+        <div class="modal-content">
+          <div class="copy-top-right" id="copyIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V5zM8 21V7h11v14H8z"
+              />
+            </svg>
+          </div>
+
+          <h2>CREATE COURSE</h2>
+          <input
+            type="text"
+            id="lecturerName"
+            placeholder="Input Lecturer Name"
+          />
+          <input
+            type="text"
+            id="courseTitle"
+            placeholder="Input Course Title"
+          />
+          <button id="submitCourse" class="submit-btn">Submit</button>
+        </div>
+      </div>
+    </main>
+
+    <div id="copyNotification" class="copy-notification hidden">
+      Course code copied!
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

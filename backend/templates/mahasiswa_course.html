@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahasiswa Course</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/mahasiswa_course.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">
+        <img
+          src="{{ url_for('static', filename='image/logo Ti.png') }}"
+          alt="Logo TI"
+        />
+      </div>
+      <nav class="menu">
+        <a href="/home">HOME</a>
+        <a href="/mahasiswa_dashboard">DASHBOARD</a>
+        <a href="/mahasiswa_course" class="active">COURSES</a>
+      </nav>
+      <div class="profile">
+        <img
+          src="{{ url_for('static', filename='image/profil.jpg') }}"
+          alt="Profile"
+        />
+      </div>
+    </header>
+
+    <main id="mainContent">
+      <div class="content">
+        <h1>Daftar Course & Task</h1>
+        <div id="courseContainer">
+          {% for course in courses %}
+          <div class="course-card" data-course="{{ course.course_code }}">
+            <h2>{{ course.course_name }}</h2>
+            <p><strong>Kode:</strong> {{ course.course_code }}</p>
+            <div class="task-list">
+              {% if course.tasks %} {% for task in course.tasks %}
+              <div class="task-card">
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description or "Tidak ada deskripsi" }}</p>
+                <p><strong>Deadline:</strong> {{ task.deadline_display }}</p>
+              </div>
+              {% endfor %} {% else %}
+              <p class="empty">Belum ada task dari dosen.</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/mahasiswa_course.js') }}"></script>
+  </body>
+</html>

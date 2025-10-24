@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Dosen</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/dosen.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="logo">
+        <img
+          src="{{ url_for('static', filename='image/logo ti.png') }}"
+          alt="Logo Ti"
+        />
+      </div>
+      <nav class="menu">
+        <a href="/">HOME</a>
+        <a href="/dosen_dashboard">DASHBOARD</a>
+        <a href="/dosen_course" class="active">COURSES</a>
+      </nav>
+      <div class="profile">
+        <img
+          id="userAvatar"
+          src="{{ url_for('static', filename='image/profil.jpg') }}"
+          alt="User Avatar"
+        />
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="dashboardContent">
+      {% if courses and courses|length > 0 %} {% for course in courses %}
+      <div class="course-section">
+        <h1>{{ course.course_name|upper }}</h1>
+        <button class="add-btn" data-course-code="{{ course.course_code }}">
+          + ADD TASK
+        </button>
+
+        <div class="task-list" id="task-list-{{ course.course_code }}">
+          {% if course.tasks and course.tasks|length > 0 %} {% for task in
+          course.tasks %}
+          <div
+            class="task-item"
+            data-task-id="{{ task.id }}"
+            data-title="{{ task.title }}"
+            data-desc="{{ task.description or '' }}"
+            data-deadline="{{ task.deadline_input or '' }}"
+            data-files="{{ task.file or '[]' }}"
+            data-course-code="{{ course.course_code }}"
+          >
+            <div class="task-header">
+              <h3>{{ task.title }}</h3>
+              <div class="task-actions">
+                <button class="edit-btn">✎</button>
+                <button class="delete-btn">🗑</button>
+              </div>
+            </div>
+            <p class="desc">{{ task.description or '' }}</p>
+            <div class="date-row">
+              <p class="opened">
+                Deadline: {{ task.deadline_display or 'N/A' }}
+              </p>
+            </div>
+          </div>
+          {% endfor %} {% else %}
+          <p class="no-task">Belum ada tugas untuk course ini.</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div id="noCourse" class="status">
+        <h1>Tidak ada course yang dibuat</h1>
+        <p>Silakan buat course baru di halaman dashboard.</p>
+      </div>
+      {% endif %}
+    </main>
+
+    <!-- Popup Tambah/Edit Task -->
+    <div id="popupOverlay" class="popup-overlay">
+      <div class="popup-box">
+        <h2 id="popupTitle">Add Task</h2>
+
+        <form id="taskForm">
+          <label for="taskTitle">Judul Tugas</label>
+          <input
+            type="text"
+            id="taskTitle"
+            name="taskTitle"
+            placeholder="Masukkan judul tugas"
+            required
+          />
+
+          <label for="taskDesc">Deskripsi</label>
+          <textarea
+            id="taskDesc"
+            name="taskDesc"
+            placeholder="Masukkan deskripsi tugas"
+          ></textarea>
+
+          <label for="taskFile">File / Gambar / Video</label>
+          <div id="fileUploadArea" class="upload-area">
+            <input type="file" id="taskFile" name="taskFile" hidden />
+            <p id="uploadText">Klik di sini atau seret file untuk mengunggah</p>
+            <ul id="fileList"></ul>
+          </div>
+
+          <label for="taskDeadline">Deadline</label>
+          <input
+            type="datetime-local"
+            id="taskDeadline"
+            name="taskDeadline"
+            required
+          />
+
+          <div class="popup-buttons">
+            <button type="button" id="saveBtn" class="save-btn">Save</button>
+            <button type="button" id="cancelBtn" class="cancel-btn">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dosen.js') }}"></script>
+  </body>
+</html>
